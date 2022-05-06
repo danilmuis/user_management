@@ -1,14 +1,22 @@
 const express = require('express');
+require('dotenv').config()
 const app = express();
 const helmet = require('helmet');
 const xss = require('xss-clean');
 const cors = require('cors');
 const morgan = require('morgan');
 const routes = require('./routes');
-const PORT = process.env.NODE_PORT || 30000
+const PORT = process.env.PORT || 30000
+const db = require("./configs/db");
+
 // enable logging
 app.use(morgan('combined'))
 
+// Connect to DB
+db()
+  .then(() => console.log("Connected to DB"))
+  .catch((err) => `Error Connection to DB ${err.message}`);
+  
 // set security HTTP headers
 app.use(helmet());
 
