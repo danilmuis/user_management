@@ -7,3 +7,7 @@ kubectl apply -f mongo-pv.yaml
 kubectl apply -f mongo-pvc.yaml
 kubectl apply -f mongo-service.yaml 
 ```
+## Source
+```
+https://github.com/scriptcamp/kubernetes-mongodb
+```
