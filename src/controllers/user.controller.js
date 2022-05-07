@@ -1,4 +1,5 @@
 const userModel = require('../db/models/user.model');
+const bcrypt = require('bcrypt');
 
 class UserController{
 
@@ -22,6 +23,9 @@ class UserController{
 
     async add(req,res){
         try {
+            const salt = await bcrypt.genSalt(10);
+            const hash = await bcrypt.hash(req.body.password, salt);
+            req.body.password = hash;
             const newUser = new userModel(req.body)
             await newUser.save(newUser);
             res.status(201).json({

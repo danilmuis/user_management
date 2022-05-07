@@ -1,7 +1,7 @@
 const express = require('express');
 require('express-group-routes');
 
-const authRoute = require('./auth.route');
+const publicRoute = require('./public.route');
 const userRoute = require('./user.route');
 const router = express.Router();
 
@@ -12,7 +12,7 @@ router.get('/', ((req, res) => {
     })
   })
 );
-
+router.use('/', publicRoute);
 router.use('/users', userRoute);
 
 module.exports = router;

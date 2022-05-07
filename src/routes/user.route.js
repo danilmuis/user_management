@@ -1,13 +1,17 @@
 const express = require('express');
+require('express-group-routes');
 const userController = require('../controllers/user.controller');
-// const jwtAuth = require('../../middlewares/auth');
+const authentication = require('../middlewares/auth');
 
-const router = express.Router();
+const routers = express.Router();
 
-router.get('/', userController.getAll);
-router.get('/:id', userController.getById);
-router.post('/', userController.add);
-router.delete('/:id', userController.deleteById);
-router.put('/:id', userController.updateById);
-// router.post('/login', validate(authValidation.login), controller.login);
-module.exports = router;
+
+routers.group('/', (router) => {
+    router.use(authentication.verifyToken);
+    router.get('/', userController.getAll);
+    router.get('/:id', userController.getById);
+    router.post('/', userController.add);
+    router.delete('/:id', userController.deleteById);
+    router.put('/:id', userController.updateById);
+})
+module.exports = routers;
