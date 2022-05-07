@@ -27,10 +27,8 @@ class UserController{
             const hash = await bcrypt.hash(req.body.password, salt);
             req.body.password = hash;
             const newUser = new userModel(req.body)
-            await newUser.save(newUser);
-            res.status(201).json({
-                "message" : "User Created"
-            });
+            await newUser.save();
+            res.status(201).json({"message" : "User Created"});
         } catch (error) {
             res.status(500).json({"message" : "Something Went Wrong"});
         }
@@ -40,13 +38,9 @@ class UserController{
         try {
             const result = await userModel.findByIdAndDelete(req.params.id);
             if(result){
-                res.status(200).json({
-                    "message" : "User Deleted"
-                });
+                res.status(200).json({"message" : "User Deleted"});
             }else{
-                res.status(404).json({
-                    "message" : "User Not Found"
-                });
+                res.status(404).json({"message" : "User Not Found"});
             }
             
         } catch (error) {
@@ -56,19 +50,47 @@ class UserController{
 
     async updateById(req, res){
         try {
+            const salt = await bcrypt.genSalt(10);
+            const hash = await bcrypt.hash(req.body.password, salt);
+            req.body.password = hash;
             const result = await userModel.findByIdAndUpdate(
                 req.params.id,
                 { $set: req.body },
                 { new: true }
               );
             if(result){
-                res.status(200).json({
-                    "message" : "User Updated"
-                });
+                res.status(200).json({"message" : "User Updated"});
             }else{
-                res.status(404).json({
-                    "message" : "User Not Found"
-                });
+                res.status(404).json({"message" : "User Not Found"});
+            }
+        } catch (error) {
+            res.status(500).json({"message" : "Something Went Wrong"});
+        }
+    }
+
+    async getProfile(req, res) {
+        try {
+            let result = await userModel.find({email:req.user.email});
+            res.status(200).json({data : result});
+        } catch (error) {
+            res.status(500).json({"message" : "Something Went Wrong"});
+        }
+    }
+
+    async updateProfile(req, res) {
+        try {
+            const salt = await bcrypt.genSalt(10);
+            const hash = await bcrypt.hash(req.body.password, salt);
+            req.body.password = hash;
+            const result = await userModel.findByIdAndUpdate(
+                req.user.id,
+                { $set: req.body },
+                { new: true }
+              );
+            if(result){
+                res.status(200).json({"message" : "User Updated"});
+            }else{
+                res.status(404).json({"message" : "User Not Found"});
             }
         } catch (error) {
             res.status(500).json({"message" : "Something Went Wrong"});

@@ -1,9 +1,9 @@
 const express = require('express');
-require('express-group-routes');
-
 const publicRoute = require('./public.route');
+const adminRoute = require('./admin.route');
 const userRoute = require('./user.route');
 const router = express.Router();
+const authentication = require('../middlewares/auth');
 
 router.get('/', ((req, res) => {
     res.status(200).send({
@@ -12,7 +12,16 @@ router.get('/', ((req, res) => {
     })
   })
 );
+// route for public
 router.use('/', publicRoute);
-router.use('/users', userRoute);
+
+// middlware to check authenticated users
+router.use(authentication.verifyToken);
+
+// route for every authenticated user
+router.use('/profile', userRoute);
+
+// route for admin
+router.use('/users', authentication.adminCheck, adminRoute);
 
 module.exports = router;
