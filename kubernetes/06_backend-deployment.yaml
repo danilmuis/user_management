@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend 
+    spec:
+      containers:
+      - name: backend
+        image: danilmuis/user_management:latest
+        ports:
+        - containerPort: 9001
+        env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MONGO_USER
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MONGO_PASSWORD
+        - name: MONGO_HOST
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MONGO_HOST
+        - name: MONGO_USER
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MONGO_USER
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MONGO_PASSWORD
+        - name: MONGO_PORT
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: MONGO_PORT
+        - name: NODE_ENV
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: NODE_ENV
+        - name: PORT
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: PORT
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: JWT_SECRET
+        - name: JWT_ACCESS_EXPIRATION_MINUTES
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: JWT_ACCESS_EXPIRATION_MINUTES
+        - name: JWT_REFRESH_EXPIRATION_DAYS
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: JWT_REFRESH_EXPIRATION_DAYS
