@@ -18,6 +18,7 @@ const userSchema = new Schema(
         type: String,
         min: 7,
         required: true,
+        select: false,
       },
       admin: {
         type: Boolean,

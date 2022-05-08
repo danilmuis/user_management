@@ -1,25 +1,50 @@
-# Credential
-## Admin
+
+# About This API
+### This API was created with the aim of managing users and at the same time I can learn development with kubernetes
+
+# API Architecture
+
+<div style="text-align: center;">
+
+![Alt text](./architecture.png "Architecture Image")
+
+</div>
+
+## Live Demo
+```bash
+https://api.7a9.xyz/v1
+```
+## Credentials
+### Admin
 ```bash
 username : admin@gmail.com
 password : Muis@1234
 ```
-## User
+### User
 ```bash
 username : user@gmail.com
 password : Danil@1234
 ```
+### Dont forget to import the postman collection ()
+
+
 # Deploy with kubernetes
-``` bash
-cd kuberntes
-kubectl apply -f mongo-secret.yaml
-kubectl apply -f mongo-deployment.yaml
-kubectl apply -f mongo-pv.yaml
-kubectl apply -f mongo-pvc.yaml
-kubectl apply -f mongo-service.yaml 
+## Make sure you change the environment in kubernetes/01_secrets.yaml
+```bash
+nano kubernetes/01_secrets.yaml
+```
+## Deploy
+```bash
+cd kubernetes
+kubectl apply -f .
 ```
 
-## Source
+
+# Test the api
 ```bash
-https://github.com/scriptcamp/kubernetes-mongodb
+curl http://[External_URL_Service]/v1
+```
+### If it works, it should respond with :
+```json
+{"message":"Welcome to User Management API","created_by":"Muhammad Danil Muis"}
 ```

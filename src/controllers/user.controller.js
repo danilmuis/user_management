@@ -80,7 +80,7 @@ class UserController{
 
     async getProfile(req, res) {
         try {
-            let result = await userModel.findOne({email:req.user.email});
+            let result = await userModel.findOne({email:req.user.email}).select('-admin');
             res.status(200).json({data : result});
         } catch (error) {
             res.status(500).json({"message" : "Something Went Wrong"});
