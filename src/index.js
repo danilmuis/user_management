@@ -10,7 +10,9 @@ const PORT = process.env.PORT || 30000
 const db = require("./configs/db");
 
 // enable logging
-app.use(morgan('combined'))
+if(process.env.NODE_ENV !== 'production'){
+  app.use(morgan('combined'))
+}
 
 // Connect to DB
 db()
