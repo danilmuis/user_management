@@ -25,7 +25,10 @@ password : Muis@1234
 username : user@gmail.com
 password : Danil@1234
 ```
-### Dont forget to import the postman collection ()
+### Dont forget to import the postman collection 
+```bash
+Sejutacita_User_Management.postman_collection.json
+```
 
 
 # Deploy with kubernetes
