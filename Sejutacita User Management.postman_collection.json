@@ -44,13 +44,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/users/6276b48009c8e707d3377326",
+							"raw": "{{base_url}}/users/62787001c0af57d160f2fad2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"users",
-								"6276b48009c8e707d3377326"
+								"62787001c0af57d160f2fad2"
 							]
 						},
 						"description": "Get user by the ID"
@@ -69,13 +69,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/users/62754eecae72856e013e7a0e",
+							"raw": "{{base_url}}/users/62787001c0af57d160f2fad2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"users",
-								"62754eecae72856e013e7a0e"
+								"62787001c0af57d160f2fad2"
 							]
 						},
 						"description": "Delete user by the ID"
@@ -95,7 +95,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"Muhammad Danil Muis\",\r\n    \"password\" : \"Muis@1234\",\r\n    \"admin\" : true\r\n}",
+							"raw": "{\r\n    \"name\" : \"Muhammad Danil Muis\",\r\n    \"password\" : \"Muis@1234\",\r\n    \"admin\" : false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -103,13 +103,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/users/627616efe3dae3244e910c1a",
+							"raw": "{{base_url}}/users/62787001c0af57d160f2fad2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"users",
-								"627616efe3dae3244e910c1a"
+								"62787001c0af57d160f2fad2"
 							]
 						},
 						"description": "Update user data by ID\n\n*   name (optional) (string)\n*   password (optional) (Must have length min 7 characters, uppercase, lowercase, number, and symbol)\n*   admin (optional) (boolean)"
@@ -129,7 +129,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"daniltelkom3@gmail.com\",\r\n    \"name\" : \"Muhammad Danil Muis\",\r\n    \"password\" : \"Muis@1234\",\r\n    \"admin\" : false\r\n}",
+							"raw": "{\r\n    \"email\" : \"foobar@gmail.com\",\r\n    \"name\" : \"Foobar\",\r\n    \"password\" : \"Foobar@1234\",\r\n    \"admin\" : false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -163,8 +163,8 @@
 							"script": {
 								"exec": [
 									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"access_token\", jsonData.access.token);\r",
-									"pm.collectionVariables.set(\"refresh_token\", jsonData.refresh.token);\r",
+									"pm.environment.set(\"access_token\", jsonData.access.token);\r",
+									"pm.environment.set(\"refresh_token\", jsonData.refresh.token);\r",
 									"// test script\r",
 									"pm.test(\"response should be okay to process\", function () {\r",
 									"    pm.response.to.not.be.error;\r",
@@ -210,8 +210,8 @@
 							"script": {
 								"exec": [
 									"var jsonData = pm.response.json();\r",
-									"pm.collectionVariables.set(\"access_token\", jsonData.access.token);\r",
-									"pm.collectionVariables.set(\"refresh_token\", jsonData.refresh.token);\r",
+									"pm.environment.set(\"access_token\", jsonData.access.token);\r",
+									"pm.environment.set(\"refresh_token\", jsonData.refresh.token);\r",
 									"// test script\r",
 									"pm.test(\"response should be okay to process\", function () {\r",
 									"    pm.response.to.not.be.error;\r",
@@ -292,7 +292,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"Muhammad Danil Muisx\",\r\n    \"password\" : \"Muis@1234\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"Admin Muis\",\r\n    \"password\" : \"Muis@1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

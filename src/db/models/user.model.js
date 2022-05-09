@@ -8,25 +8,25 @@ const userSchema = new Schema(
       email: {
         type: String,
         required: true,
-        unique : true,
+        unique : true
       },
       name: {
         type: String,
-        required: true,
+        required: true
       },
       password: {
         type: String,
         min: 7,
         required: true,
-        select: false,
+        select: false
       },
       admin: {
         type: Boolean,
-        required: true,
+        required: true
       },
     },
     {
-      timestamps: true,
+      timestamps: true
     }
   );
   

@@ -17,7 +17,6 @@ class UserController{
             let result = await userModel.findById(req.params.id);
             res.status(200).json({data : result});
         } catch (error) {
-            // res.status(500).json({"message" : "Something Went Wrong"});
             res.status(200).json({data : null});
         }
     }
@@ -73,7 +72,6 @@ class UserController{
                 res.status(404).json({"message" : "User Not Found"});
             }
         } catch (error) {
-            console.log(error);
             res.status(404).json({"message" : "User Not Found"});
         }
     }

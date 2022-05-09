@@ -8,11 +8,11 @@ const tokenSchema = new Schema(
       token: {
         type: String,
         required: true,
-        unique : true,
+        unique : true
       },
     },
     {
-      timestamps: true,
+      timestamps: true
     }
   );
   

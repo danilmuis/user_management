@@ -1,6 +1,7 @@
 
 # About This API
-### This API was created with the aim of managing users and at the same time I can learn development with kubernetes
+### This API was created by using NodeJS(Express Framework) and MongoDB 
+### This API was created for the purpose of managing users and at the same time I could learn development with kubernetes
 
 # API Architecture
 
@@ -17,19 +18,23 @@ https://api.7a9.xyz/v1
 ## Credentials
 ### Admin
 ```bash
-username : admin@gmail.com
+email : admin@gmail.com
 password : Muis@1234
 ```
 ### User
 ```bash
-username : user@gmail.com
+email : user@gmail.com
 password : Danil@1234
+```
+
+## Documentation API
+```bash
+https://documenter.getpostman.com/view/9230090/UyxdM9kQ
 ```
 ### Dont forget to import the postman collection 
 ```bash
-Sejutacita_User_Management.postman_collection.json
+Sejutacita User Management.postman_collection.json
 ```
-
 
 # Deploy with kubernetes
 ## Make sure you change the environment in kubernetes/01_secrets.yaml

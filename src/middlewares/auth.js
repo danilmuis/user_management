@@ -30,10 +30,6 @@ class Authentication{
         }
     }
     
-    generateAccessToken(data){
-        return jwt.sign(data, config.JWT_SECRET, { expiresIn: "1800s" });
-    }
-
     generateToken(payload, expires){
         payload.iat = moment().unix();
         payload.exp = expires.unix();

@@ -8,13 +8,12 @@ const options = {
     useUnifiedTopology: true,
 };
 module.exports = () => {
-    console.log(`Connect to mongodb with url ${url} and options ${JSON.stringify(options)}`);
     mongoose.set('debug', true);
     mongoose.connect(url, options);
     const connection = mongoose.connection;
 
     connection.once("open", function() {
-        console.log("MongoDB database connection established successfully");
+        console.log(`Connect to mongodb with url ${url} and options ${JSON.stringify(options)}`);
         seeder();
     });
     return mongoose.connect(url);
