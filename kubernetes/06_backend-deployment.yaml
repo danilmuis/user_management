@@ -75,3 +75,8 @@ spec:
             secretKeyRef:
               name: secrets
               key: JWT_REFRESH_EXPIRATION_DAYS
+        - name: TZ
+          valueFrom:
+            secretKeyRef:
+              name: secrets
+              key: TZ
